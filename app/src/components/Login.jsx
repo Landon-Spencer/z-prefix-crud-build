@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 import CssBaseline from '@mui/joy/CssBaseline';
@@ -11,10 +12,13 @@ import Link from '@mui/joy/Link';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import AuthContext from './AuthContext'
+import Cookies from 'js-cookie'
+import Signup from './Signup'
 
 export default function Login(props) {
   const [formData, setFormData] = useState({username: '', password: ''})
   const { user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -36,11 +40,14 @@ export default function Login(props) {
         body: JSON.stringify(formData)
       });
       const resData = await res.json();
-      console.log('Success:', resData);
+      // console.log('Success:', resData);
       if (resData.login) {
         setUser(resData);
-        console.log(user);
-        alert(resData.message);
+        Cookies.set('id', `${resData.id}`)
+        Cookies.set('first_name', `${resData.first_name}`)
+        Cookies.set('last_name', `${resData.last_name}`)
+        // alert(resData.message);
+        navigate(`/user/${resData.id}`)
       } else {
         alert(resData.message);
       }
@@ -101,13 +108,9 @@ export default function Login(props) {
               required
             />
           </FormControl>
-          <Button sx={{ mt: 1 /* margin top */ }} onClick={handleLogin}>Log in</Button>
-          <Typography
-            endDecorator={<Button>Sign up</Button>}
-            sx={{ fontSize: 'sm', alignSelf: 'center' }}
-          >
-            Don&apos;t have an account?
-          </Typography>
+          <Button onClick={handleLogin}>Log in</Button>
+          <Typography level="body-sm">Create a new account!</Typography>
+          <Signup/>
         </Sheet>
       {/* </CssVarsProvider> */}
     </>

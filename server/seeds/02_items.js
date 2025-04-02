@@ -8,7 +8,6 @@ const itemArray = [];
 
 for (let i = 0; i < numberOfItems; i++) {
   let inputItem = {};
-  inputItem.id = i;
   inputItem.user_id = Math.floor(Math.random() * numberOfUsers) + 1;
   inputItem.item_name = faker.food.fruit();
   inputItem.description = faker.lorem.words({ min: 10, max: 25});
