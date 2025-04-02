@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useContext } from 'react';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 import CssBaseline from '@mui/joy/CssBaseline';
@@ -10,8 +10,48 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
+import AuthContext from './AuthContext'
 
 export default function Login(props) {
+  const [formData, setFormData] = useState({username: '', password: ''})
+  const { user, setUser } = useContext(AuthContext);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    // console.log(formData);
+    try {
+      const res = await fetch ('http://localhost:8080/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      const resData = await res.json();
+      console.log('Success:', resData);
+      if (resData.login) {
+        setUser(resData);
+        console.log(user);
+        alert(resData.message);
+      } else {
+        alert(resData.message);
+      }
+      setFormData({username: '', password: ''});
+    } catch (err) {
+      console.log('Error:', err);
+      setFormData({username: '', password: ''});
+    }
+
+  }
+
   return (
     <>
       {/* <CssVarsProvider {...props}> */}
@@ -44,6 +84,9 @@ export default function Login(props) {
               name="username"
               type="username"
               placeholder="username"
+              value={formData.username}
+              onChange={handleChange}
+              required
             />
           </FormControl>
           <FormControl>
@@ -53,9 +96,12 @@ export default function Login(props) {
               name="password"
               type="password"
               placeholder="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
             />
           </FormControl>
-          <Button sx={{ mt: 1 /* margin top */ }}>Log in</Button>
+          <Button sx={{ mt: 1 /* margin top */ }} onClick={handleLogin}>Log in</Button>
           <Typography
             endDecorator={<Button>Sign up</Button>}
             sx={{ fontSize: 'sm', alignSelf: 'center' }}

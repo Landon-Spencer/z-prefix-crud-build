@@ -30,6 +30,31 @@ app.get('/items{/:id}', (req, res) => {
     })
 })
 
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  console.log('username:', username, 'password:', password);
+  knex('users')
+    .select('*')
+    .where({username: username})
+    .then((user) => {
+      console.log(user);
+      if (user[0]?.username == username && user[0]?.password == password) {
+        res.status(200).json({
+          id: user[0].id,
+          first_name: user[0].first_name,
+          last_name: user[0].last_name,
+          login: true,
+          message: 'User authenticated'
+        })
+      } else {
+        res.status(200).json({
+          login: false,
+          message: 'Username or password is incorrect'
+        })
+      }
+    })
+})
+
 app.listen(PORT, () => {
   console.log('Server is running on port:', PORT);
 })
