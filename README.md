@@ -9,7 +9,7 @@ In your terminal navigate to the server folder and run `npm install` to install 
 
 The default API port is 8080 but can be changed with the .env PORT variable or in the `server.js` file under the `PORT` variable. The default Environment is 'development' but can be changed with .env NODE_ENV variable.
 
-Once you have all of your environment variable set up and database connection information then you can spin up the database. If this is the first time that you are spinning up the API you can run `npm spin-up` and this will run the migration files to create the database tables, seed the database, and start the Express server with `nodemon`. If everything has been set up correctly your console should show that `nodemon` is starting and that the Server is running on the port that you have chosen.
+Once you have all of your environment variable set up and database connection information then you can spin up the database. If this is the first time that you are spinning up the API you can run `npm run spin-up` and this will run the migration files to create the database tables, seed the database, and start the Express server with `nodemon`. If everything has been set up correctly your console should show that `nodemon` is starting and that the Server is running on the port that you have chosen.
 
 Congratulations, hopefully you have a running API that is connected to your database. Now move on to the Client Instructions to start using the app.
 ## Client Instructions
