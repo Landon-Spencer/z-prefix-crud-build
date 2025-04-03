@@ -17,7 +17,6 @@ function App() {
 
   if (document.cookie && Object.keys(user).length === 0) {
     setUser(Cookies.get());
-    // console.log('cookie user', Cookies.get())
   }
 
   return (
@@ -25,7 +24,7 @@ function App() {
     <AuthContext.Provider value={value}>
       <div className='header'>
         <div className='title'>
-          <h1>Inventory Tracker</h1>
+          <h1>Fruit Stand Inventory Tracker</h1>
         </div>
         <div className='nav'>
           <Button onClick={() => {navigate('/')}}>Home</Button>
@@ -39,12 +38,6 @@ function App() {
                     console.log(cookie.name);
                     Cookies.remove(cookie);
                   })
-                  // Cookies.remove('id')
-                  // Cookies.remove('first_name')
-                  // Cookies.remove('last_name')
-                  // Cookies.remove('id', {path: '/user'})
-                  // Cookies.remove('first_name', {path: '/user'})
-                  // Cookies.remove('last_name', {path: '/user'})
                   navigate('/')
                 }}>Logout</Button>
             </>

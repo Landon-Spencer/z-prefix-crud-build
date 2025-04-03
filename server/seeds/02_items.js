@@ -1,4 +1,3 @@
-// import { faker } from '@faker-js/faker';
 import { faker } from '@faker-js/faker';
 
 const maxQuantity = 100;
@@ -14,8 +13,6 @@ for (let i = 0; i < numberOfItems; i++) {
   inputItem.quantity = Math.floor(Math.random() * maxQuantity);
   itemArray.push(inputItem);
 }
-
-// console.log(itemArray);
 
 /**
  * @param { import("knex").Knex } knex

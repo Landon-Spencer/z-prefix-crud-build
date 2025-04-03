@@ -29,7 +29,6 @@ export default function DeleteItem(item) {
 
   const handleDelete = async (event) => {
     event.preventDefault();
-    console.log(deleteItem);
     try {
       const res = await fetch(`http://localhost:8080/items/${deleteItem.id}`, {
         method: 'DELETE',
@@ -41,7 +40,6 @@ export default function DeleteItem(item) {
         throw new Error(`HTTP error. status: ${res.status}`)
       }
       const resData = await res.json();
-      console.log('Success:', resData.message)
       navigate(`/user/${user.id}`)
     } catch (err) {
       console.log('Error:', err)

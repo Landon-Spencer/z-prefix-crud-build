@@ -1,5 +1,4 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/material/Typography';
@@ -28,8 +27,6 @@ export default function Signup() {
   const [formData, setFormData] = useState({})
   const { user, setUser } = useContext(AuthContext);
   user.change = false;
-  const navigate = useNavigate();
-
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,7 +38,6 @@ export default function Signup() {
 
   const handleNewUser = async (event) => {
     event.preventDefault();
-    console.log(formData);
     try {
       const res = await fetch(`http://localhost:8080/users`, {
         method: 'POST',
@@ -51,12 +47,9 @@ export default function Signup() {
         body: JSON.stringify(formData),
       });
       const resData = await res.json();
-
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${resData.message}`);
       }
-
-      console.log('Success:', resData.message);
       alert(resData.message);
       setOpen(false);
       setFormData({})
@@ -83,7 +76,6 @@ export default function Signup() {
           <FormControl>
             <FormLabel>First Name:</FormLabel>
             <Input
-              // html input attribute
               name="first_name"
               type="text"
               placeholder="name"
@@ -95,7 +87,6 @@ export default function Signup() {
           <FormControl>
             <FormLabel>Last Name:</FormLabel>
             <Input
-              // html input attribute
               name="last_name"
               type="text"
               placeholder="last_name"
@@ -107,7 +98,6 @@ export default function Signup() {
           <FormControl>
             <FormLabel>Username:</FormLabel>
             <Input
-              // html input attribute
               name="username"
               type="text"
               placeholder="username"
@@ -119,7 +109,6 @@ export default function Signup() {
           <FormControl>
             <FormLabel>Password:</FormLabel>
             <Input
-              // html input attribute
               name="password"
               type="password"
               placeholder="password"

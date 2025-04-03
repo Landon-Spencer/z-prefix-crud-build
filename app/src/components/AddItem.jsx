@@ -1,5 +1,4 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/material/Typography';
@@ -28,7 +27,6 @@ export default function AddItem() {
   const [formData, setFormData] = useState({})
   const { user, setUser } = useContext(AuthContext);
   user.change = false;
-  const navigate = useNavigate();
 
 
   const handleChange = (event) => {
@@ -42,7 +40,6 @@ export default function AddItem() {
   const handleAddItem = async (event) => {
     event.preventDefault();
     formData.user_id = user.id;
-    console.log(formData);
     try {
       const res = await fetch(`http://localhost:8080/items`, {
         method: 'POST',
@@ -56,8 +53,6 @@ export default function AddItem() {
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${resData.message}`);
       }
-
-      console.log('Success:', resData.message);
       alert(resData.message);
       setOpen(false);
       setFormData({})
@@ -85,7 +80,6 @@ export default function AddItem() {
           <FormControl>
             <FormLabel>Item Name:</FormLabel>
             <Input
-              // html input attribute
               name="item_name"
               type="text"
               placeholder="name"
@@ -97,7 +91,6 @@ export default function AddItem() {
           <FormControl>
             <FormLabel>Description: 255 character limit</FormLabel>
             <Input
-              // html input attribute
               name="description"
               type="text"
               placeholder="description"

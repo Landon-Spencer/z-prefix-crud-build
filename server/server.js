@@ -47,7 +47,6 @@ app.get('/user/:id', (req, res) => {
 
 app.post('/users', (req, res) => {
   const { first_name, last_name, username, password } = req.body;
-  // console.log('username:', username, 'password:', password);
 
   const newUser = {
     first_name: first_name,
@@ -71,12 +70,10 @@ app.post('/users', (req, res) => {
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  // console.log('username:', username, 'password:', password);
   knex('users')
     .select('*')
     .where({username: username})
     .then((user) => {
-      // console.log(user);
       if (user[0]?.username == username && user[0]?.password == password) {
         res.status(200).json({
           id: user[0].id,

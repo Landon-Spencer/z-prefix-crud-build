@@ -28,7 +28,6 @@ export default function ItemPage() {
 
   const handleSaveEdit = async (event) => {
     event.preventDefault();
-    // console.log(formData);
     try {
       const res = await fetch(`http://localhost:8080/items/${itemPage.id}`, {
         method: 'PATCH',
@@ -38,18 +37,14 @@ export default function ItemPage() {
         body: JSON.stringify(formData),
       });
       const resData = await res.json();
-
       if (!res.ok) {
-        throw new Error(`HTTP error! status: ${resData.message}`);
+        throw new Error(`${resData.message}`);
       }
-
-      // console.log('Success:', resData.message);
       alert(resData.message);
       setFormData({})
       setEdit(!edit)
     } catch (err) {
-      console.error('Error:', err);
-      alert('Error:' + err);
+      alert(err);
       setFormData({})
     }
   }
@@ -63,10 +58,6 @@ export default function ItemPage() {
       })
       .catch(err => console.log(err));
   }, [edit]);
-
-  // console.log('itemPage:', itemPage);
-  // console.log('user:', user);
-  // console.log('logic:', user.id === itemPage[0]?.user_id)
 
   return (
     <>
