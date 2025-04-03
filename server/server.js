@@ -20,7 +20,7 @@ app.get('/items{/:id}', (req, res) => {
         itemsTable.where('items.id', '=', itemId)
       }
     })
-    .orderBy('items.id')
+    .orderBy('items.id', 'desc')
     .then(data => res.status(200).json(data))
     .catch(err => {
       console.log('Error', err)
@@ -35,7 +35,7 @@ app.get('/user/:id', (req, res) => {
   knex('items')
     .select('*')
     .where('items.user_id', '=', userId)
-    .orderBy('items.id')
+    .orderBy('items.id', 'desc')
     .then(data => res.status(200).json(data))
     .catch(err => {
       console.log('Error', err)

@@ -18,7 +18,7 @@ export default function ItemCard(inputItem) {
   }
 
   return (
-    <Box sx={{ minWidth: 275 }} onClick={() => {navigate(`/item/${currentItem.id}`)}}>
+    <Box className='item-display' sx={{ minWidth: 275 }} onClick={() => {navigate(`/item/${currentItem.id}`)}}>
       <Card variant="outlined">
         <CardContent>
           <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>

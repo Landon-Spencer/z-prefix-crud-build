@@ -92,7 +92,7 @@ export default function ItemPage() {
               type="text"
               multiline
               style={{
-                width: '600px',
+                width: '725px',
                 background: 'white',
               }}
               placeholder={formData.description}
@@ -118,14 +118,16 @@ export default function ItemPage() {
           </>
         : <h3>{itemPage?.quantity}</h3>
       }
-      {(user.id == itemPage?.user_id)
-        ? <>
-          <DeleteItem item={itemPage}/>
-          {edit
-            ? <Button variant='outlined' startIcon={<EditIcon/>} onClick={handleSaveEdit} >Save Edits</Button>
-            : <Button variant='outlined' startIcon={<EditIcon/>} onClick={() => setEdit(!edit)} >Edit</Button>}
-        </>
-        : <></>}
+      <div className='item-actions'>
+        {(user.id == itemPage?.user_id)
+          ? <>
+            <DeleteItem item={itemPage}/>
+            {edit
+              ? <Button variant='outlined' startIcon={<EditIcon/>} onClick={handleSaveEdit} >Save Edits</Button>
+              : <Button variant='outlined' startIcon={<EditIcon/>} onClick={() => setEdit(!edit)} >Edit</Button>}
+          </>
+          : <></>}
+      </div>
     </>
   )
 }

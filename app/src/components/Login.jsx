@@ -30,7 +30,7 @@ export default function Login(props) {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    console.log('handleLogin');
+    // console.log('handleLogin');
     try {
       const res = await fetch ('http://localhost:8080/login', {
         method: 'POST',

@@ -13,7 +13,9 @@ export default function Home() {
 
   return (
     <>
-      {items.map((item) => <ItemCard key={item.id} item={item}></ItemCard>)}
+      <div className='all-items'>
+        {items.map((item) => <ItemCard key={item.id} item={item}></ItemCard>)}
+      </div>
     </>
   )
 }

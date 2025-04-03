@@ -23,28 +23,34 @@ function App() {
   return (
     <>
     <AuthContext.Provider value={value}>
-      <h1>Inventory</h1>
-      <Button onClick={() => {navigate('/')}}>Home</Button>
-      {(Object.keys(user).length < 2)
-        ? <Button onClick={() => {navigate('/login')}}>Login</Button>
-        : <>
-          <Button onClick={() => {navigate(`/user/${user.id}`)}}>User Page</Button>
-          <Button onClick={() => {
-              setUser({})
-              Object.keys(Cookies.get()).forEach((cookie) => {
-                console.log(cookie.name);
-                Cookies.remove(cookie);
-              })
-              // Cookies.remove('id')
-              // Cookies.remove('first_name')
-              // Cookies.remove('last_name')
-              // Cookies.remove('id', {path: '/user'})
-              // Cookies.remove('first_name', {path: '/user'})
-              // Cookies.remove('last_name', {path: '/user'})
-              navigate('/')
-            }}>Logout</Button>
-        </>
-      }
+      <div className='header'>
+        <div className='title'>
+          <h1>Inventory Tracker</h1>
+        </div>
+        <div className='nav'>
+          <Button onClick={() => {navigate('/')}}>Home</Button>
+          {(Object.keys(user).length < 2)
+            ? <Button onClick={() => {navigate('/login')}}>Login</Button>
+            : <>
+              <Button onClick={() => {navigate(`/user/${user.id}`)}}>{`${user.first_name}'s page`}</Button>
+              <Button onClick={() => {
+                  setUser({})
+                  Object.keys(Cookies.get()).forEach((cookie) => {
+                    console.log(cookie.name);
+                    Cookies.remove(cookie);
+                  })
+                  // Cookies.remove('id')
+                  // Cookies.remove('first_name')
+                  // Cookies.remove('last_name')
+                  // Cookies.remove('id', {path: '/user'})
+                  // Cookies.remove('first_name', {path: '/user'})
+                  // Cookies.remove('last_name', {path: '/user'})
+                  navigate('/')
+                }}>Logout</Button>
+            </>
+          }
+        </div>
+      </div>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>

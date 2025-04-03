@@ -5,7 +5,7 @@
   text-align: center;
 }
 
-.logo {
+/* .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
@@ -25,9 +25,9 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
@@ -39,4 +39,35 @@
 
 .read-the-docs {
   color: #888;
+} */
+
+.item-display {
+  padding: 1em;
+  width: 1em;
+}
+
+.item-display:hover {
+  cursor:pointer;
+  transform: scale(1.05);
+}
+
+.all-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title {
+  padding: 1em;
+}
+
+.item-actions {
+  display: flex;
+  justify-content: space-around;
 }

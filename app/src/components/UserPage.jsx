@@ -18,8 +18,17 @@ export default function UserPage() {
 
   return (
     <>
-      <AddItem/>
-      {userItems.map((item) => <ItemCard key={item.id} item={item}></ItemCard>)}
+      <div className='header'>
+        <div className='title'>
+          <h1>{`${user.first_name}'s Items`}</h1>
+        </div>
+        <div className='nav'>
+          <AddItem/>
+        </div>
+      </div>
+      <div className='all-items'>
+        {userItems.map((item) => <ItemCard key={item.id} item={item}></ItemCard>)}
+      </div>
     </>
   )
 }
