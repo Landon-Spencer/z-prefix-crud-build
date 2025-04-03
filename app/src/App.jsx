@@ -25,7 +25,7 @@ function App() {
     <AuthContext.Provider value={value}>
       <h1>Inventory</h1>
       <Button onClick={() => {navigate('/')}}>Home</Button>
-      {(Object.keys(user).length < 1)
+      {(Object.keys(user).length < 2)
         ? <Button onClick={() => {navigate('/login')}}>Login</Button>
         : <>
           <Button onClick={() => {navigate(`/user/${user.id}`)}}>User Page</Button>

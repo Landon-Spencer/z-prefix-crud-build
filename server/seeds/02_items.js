@@ -10,7 +10,7 @@ for (let i = 0; i < numberOfItems; i++) {
   let inputItem = {};
   inputItem.user_id = Math.floor(Math.random() * numberOfUsers) + 1;
   inputItem.item_name = faker.food.fruit();
-  inputItem.description = faker.lorem.words({ min: 10, max: 25});
+  inputItem.description = faker.lorem.words({ min: 10, max: 20});
   inputItem.quantity = Math.floor(Math.random() * maxQuantity);
   itemArray.push(inputItem);
 }

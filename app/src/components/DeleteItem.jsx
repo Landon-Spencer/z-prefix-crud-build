@@ -31,7 +31,7 @@ export default function DeleteItem(item) {
     event.preventDefault();
     console.log(deleteItem);
     try {
-      const res = await fetch(`http://localhost:8080/items/${deleteItem[0]?.id}`, {
+      const res = await fetch(`http://localhost:8080/items/${deleteItem.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
