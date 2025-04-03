@@ -16,6 +16,11 @@ Congratulations, hopefully you have a running API that is connected to your data
 In a new terminal navigate into the app folder. Run `npm install` to install all of the app packages. The react app is left on the default port of `5173`. If you want to change the port you can update the `vite.config.js` file by adding a `server` key to the `defineConfig` object. The `server` key will have an object that looks like `{port: <your-port>, open: true}`.
 
 Now that the ports are set up run `npm start` in the app folder and the app should spin up and be visible in your browser at `http://localhost:<your-port>/`
+
+You can create your own account or if you used the seed data you can login as the two default users.
+
+Annie Admin, username: Annie, password: password\
+Andy Admin, username: Andy, password: password2
 ## API Endpoints
 The base URL is `http://localhost:<your-api-port>`
 
